@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.futbolista.entity.futbolista;
+import com.futbolista.entity.Futbolista;
 import com.futbolista.repository.FutbolistaRepository;
 
 @Service
@@ -15,17 +15,17 @@ public class FutbolistaServiceImpl implements FutbolistaService{
 	    private FutbolistaRepository futbolistaRepository;
 
 	 	@Override
-	    public List<futbolista> listaTodos() {
+	    public List<Futbolista> listaTodos() {
 	        return futbolistaRepository.findAll();
 	    }
 
 	    @Override
-	    public List<futbolista> buscarFutbolistaPorId(int id) {
+	    public List<Futbolista> buscarFutbolistaPorId(int id) {
 	        return futbolistaRepository.listaPorIdIgual(id);
 	    }
 
 		@Override
-		public futbolista registraFutbolista(futbolista obj) {
+		public Futbolista registraFutbolista(Futbolista obj) {
 			return futbolistaRepository.save(obj);
 		}
 
@@ -37,7 +37,7 @@ public class FutbolistaServiceImpl implements FutbolistaService{
 		}
 
 		@Override
-		public futbolista actualizaFutbolista(futbolista obj) {
+		public Futbolista actualizaFutbolista(Futbolista obj) {
 			return futbolistaRepository.save(obj);
 		}
 

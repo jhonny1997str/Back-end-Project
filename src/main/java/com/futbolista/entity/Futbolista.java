@@ -21,7 +21,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "futbolista")
-public class futbolista {
+public class Futbolista {
 
     @Id
 
@@ -49,5 +49,5 @@ public class futbolista {
 
     @JoinColumn(name = "posicion_id")
 
-    private posicion posicion;
+    private Posicion posicion;
 }

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.futbolista.entity.futbolista;
-import com.futbolista.entity.posicion;
+import com.futbolista.entity.Futbolista;
+import com.futbolista.entity.Posicion;
 import com.futbolista.service.FutbolistaService;
 import com.futbolista.service.PosicionService;
 import com.futbolista.util.AppSettings;
@@ -39,21 +39,21 @@ public class FutbolistaController {
 
     @GetMapping("/posiciones")
     @ResponseBody
-    public List<posicion> listarPosiciones() {
+    public List<Posicion> listarPosiciones() {
 
         return posicionService.listarPosiciones();
     }
 
     @GetMapping
     @ResponseBody // Devuelve el resultado como JSON.
-    public List<futbolista> getAllFutbolistas() {
+    public List<Futbolista> getAllFutbolistas() {
 
         return futbolistaService.listaTodos();
     }
 
     @GetMapping("/buscarPorId/{id}")
     @ResponseBody // Devuelve el resultado como JSON.
-    public List<futbolista> buscarFutbolistaPorId(@PathVariable Integer id) {
+    public List<Futbolista> buscarFutbolistaPorId(@PathVariable Integer id) {
 
         return futbolistaService.buscarFutbolistaPorId(id);
     }
@@ -62,13 +62,13 @@ public class FutbolistaController {
     @PostMapping("/registrarFutbolista")
     @ResponseBody // Devuelve el resultado como JSON.
 
-    public ResponseEntity<?> registra(@RequestBody futbolista obj) {
+    public ResponseEntity<?> registra(@RequestBody Futbolista obj) {
 
         HashMap<String, Object> salida = new HashMap<>();
 
         try {
 
-            futbolista objSalida = futbolistaService.registraFutbolista(obj);
+            Futbolista objSalida = futbolistaService.registraFutbolista(obj);
 
             if (objSalida == null) {
                 salida.put("mensaje", "Ocurrió un error al registrar");
@@ -88,11 +88,11 @@ public class FutbolistaController {
     @PutMapping("/actualizaFutbolista")
     @ResponseBody // Devuelve el resultado como JSON.
 
-    public ResponseEntity<Map<String, Object>> actualizaFutbolista(@RequestBody futbolista obj) {
+    public ResponseEntity<Map<String, Object>> actualizaFutbolista(@RequestBody Futbolista obj) {
         Map<String, Object> salida = new HashMap<>();
 
         try {
-            futbolista objSalida = futbolistaService.actualizaFutbolista(obj);
+            Futbolista objSalida = futbolistaService.actualizaFutbolista(obj);
 
             if (objSalida == null) {
                 salida.put("mensaje", AppSettings.MENSAJE_ACT_ERROR);
