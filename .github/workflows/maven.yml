@@ -33,7 +33,7 @@ jobs:
       - name: Esperar MySQL
         run: |
           for i in {1..30}; do
-            if mysqladmin ping -h"mysql" --silent; then
+            if mysqladmin ping -h"127.0.0.1" --silent; then
               echo "MySQL está listo"
               break
             fi
@@ -50,7 +50,7 @@ jobs:
 
       - name: Configurar variables de entorno
         run: |
-          echo "spring.datasource.url=jdbc:mysql://mysql:3306/examen_civa?serverTimezone=UTC" > src/main/resources/application-ci.properties
+          echo "spring.datasource.url=jdbc:mysql://127.0.0.1:3306/examen_civa?serverTimezone=UTC" > src/main/resources/application-ci.properties
           echo "spring.datasource.username=testuser" >> src/main/resources/application-ci.properties
           echo "spring.datasource.password=testpass" >> src/main/resources/application-ci.properties
           echo "spring.jpa.hibernate.ddl-auto=update" >> src/main/resources/application-ci.properties
