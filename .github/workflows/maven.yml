@@ -16,8 +16,8 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: solocali123#
           MYSQL_DATABASE: examen_civa
-          MYSQL_USER: root
-          MYSQL_PASSWORD: solocali123#
+
+
         ports:
           - 3306:3306
         options: >-
