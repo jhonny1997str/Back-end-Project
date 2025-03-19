@@ -16,10 +16,12 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: solocali123#
           MYSQL_DATABASE: examen_civa
+
+
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping -h 127.0.0.1 --silent"
+          --health-cmd="mysqladmin ping -h localhost"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
@@ -28,10 +30,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Esperar a que MySQL esté listo
+      - name: Esperar MySQL
         run: |
           for i in {1..60}; do
-            if mysql -h127.0.0.1 -uroot -p$MYSQL_ROOT_PASSWORD -e "SELECT 1" &> /dev/null; then
+            if mysqladmin ping -h"127.0.0.1" --silent; then
               echo "✅ MySQL está listo"
               break
             fi
@@ -76,11 +78,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Instalar Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
